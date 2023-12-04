@@ -18,6 +18,8 @@ public class HomePage extends JFrame {
         JButton exitButton = new JButton("Exit");
 
         setLayout(new BorderLayout());
+    
+        
 
         JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 20, 20));
         buttonPanel.add(stockControlButton);
