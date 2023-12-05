@@ -11,7 +11,7 @@ public class LoginScreen extends JFrame {
         // Setting up the JFrame
         setTitle("Login Screen");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(250, 200);
+        setSize(700, 500);
         setLocationRelativeTo(null);
 
         // Main panel using BorderLayout
