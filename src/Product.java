@@ -1,12 +1,17 @@
 
 public class Product {
 
-	private String name;
+	private String name, type;
+	private double price;
+	private int quantity;
 	//private String type;
 	//private double price;
 	
-	public Product(String name) {
+	public Product(String name,String type,int quantity,double price) {
 		this.name = name;
+		this.type = type;
+		this.quantity = quantity;
+		this.price = price;
 	}
 	
 	public String getName() {
@@ -15,7 +20,7 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
-	/*
+	
 	public String getType() {
 		return type;
 	}
@@ -29,5 +34,16 @@ public class Product {
 		this.price = price;
 	}
 	
-	*/
+	   @Override
+	    public String toString() {
+	        return this.name; 
+	    }
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 }
