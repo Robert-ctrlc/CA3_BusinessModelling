@@ -12,7 +12,7 @@ public class CorrectChange extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 500);
 
-        // Create the main panel with a GridBagLayout
+        // Create the main panel with a GridBagLayout .
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
