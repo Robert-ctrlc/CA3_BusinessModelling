@@ -17,7 +17,7 @@ public class StockHome extends JFrame {
 
         JButton button1 = new JButton();
         button1.setIcon(new ImageIcon(button1Icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-        button1.setText("Add Items");
+        button1.setText("Add Items ");
 
         JButton button2 = new JButton();
         button2.setIcon(new ImageIcon(button2Icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
