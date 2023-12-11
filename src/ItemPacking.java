@@ -104,6 +104,17 @@ public class ItemPacking extends JFrame {
         gbc.gridwidth = 2;
         panel.add(resultTextArea, gbc);
 
+        // Home Button in the Top Right Corner
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false);
+        JButton homeButton = new JButton("Home");
+
+        toolBar.add(Box.createHorizontalGlue());
+        toolBar.add(homeButton);
+
+        // Set layout and add components to the frame
+        add(toolBar, BorderLayout.NORTH);
+
         add(panel);
         setVisible(true);
     }
