@@ -8,7 +8,7 @@ public class StockHome extends JFrame {
     public StockHome() {
         setTitle("Stock Home");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(700, 500);
         setLocationRelativeTo(null);
 
         // Create ImageIcons for the button images
