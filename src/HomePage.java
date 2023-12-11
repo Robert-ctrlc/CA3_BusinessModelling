@@ -8,7 +8,7 @@ public class HomePage extends JFrame {
     public HomePage() {
         setTitle("Home Page");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
+        setSize(700, 500);
         setLocationRelativeTo(null);
 
         JButton stockControlButton = new JButton("Stock Control");
