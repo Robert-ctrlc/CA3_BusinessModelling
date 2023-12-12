@@ -54,7 +54,7 @@ public class ItemPacking extends JFrame {
         panel.add(dimensionsLabel, gbc);
 
         // Height Input
-        JLabel heightLabel = new JLabel("Height:");
+        JLabel heightLabel = new JLabel("Height :");
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 1;
