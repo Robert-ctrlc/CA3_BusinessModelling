@@ -3,11 +3,15 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class StockHome extends JFrame {
 
-    private ArrayList<Item> itemList;
+    public ArrayList<Item> itemList;
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+    private JTable table;
 
     public StockHome() {
         setTitle("Stock Home");
@@ -130,10 +134,19 @@ public class StockHome extends JFrame {
             tableModel.addRow(new Object[]{item.getName(), item.getType(), item.getExpirationDate(), item.getPrice()});
         }
 
-        JTable table = new JTable(tableModel);
+        table = new JTable(tableModel);
 
         JButton deleteButton = new JButton("Delete");
         JButton returnButton = new JButton("Return");
+
+        JButton removeExpiredButton = new JButton("Remove Expired");
+        removeExpiredButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeExpiredItems();
+                updateTable();
+            }
+        });
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
@@ -153,8 +166,9 @@ public class StockHome extends JFrame {
             }
         });
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 3));
         buttonPanel.add(deleteButton);
+        buttonPanel.add(removeExpiredButton);
         buttonPanel.add(returnButton);
 
         viewAllItemsFrame.setLayout(new BorderLayout());
@@ -162,6 +176,31 @@ public class StockHome extends JFrame {
         viewAllItemsFrame.add(buttonPanel, BorderLayout.SOUTH);
 
         viewAllItemsFrame.setVisible(true);
+    }
+
+    private void removeExpiredItems() {
+        String currentDate = dateFormat.format(new java.util.Date());
+        itemList.removeIf(item -> isExpired(item.getExpirationDate(), currentDate));
+    }
+
+    private boolean isExpired(String expirationDate, String currentDate) {
+        try {
+            java.util.Date expiryDate = dateFormat.parse(expirationDate);
+            java.util.Date sysDate = dateFormat.parse(currentDate);
+            return sysDate.after(expiryDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void updateTable() {
+        DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
+        tableModel.setRowCount(0);
+
+        for (Item item : itemList) {
+            tableModel.addRow(new Object[]{item.getName(), item.getType(), item.getExpirationDate(), item.getPrice()});
+        }
     }
 
     public static void main(String[] args) {
