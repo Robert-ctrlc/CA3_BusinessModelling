@@ -15,7 +15,7 @@ public class ShoppingBasket extends JFrame{
 	private ArrayList<Basket> basketList;
 	private JPanel purchasePanel, headPanel, viewItemsPanel, eastPanel,itemsPanel;
 	private JComboBox<String> typeBox;
-	private JList<Product> displayList;
+	private JList<Item> displayList;
 	private JScrollPane productListScrollPane;
 	private JButton homeBtn, basketBtn;
 	private JLabel vatLabel, priceLabel, dateLabel, nameLabel, totalCostLabel;
@@ -45,14 +45,10 @@ public class ShoppingBasket extends JFrame{
 		headPanel = new JPanel(new BorderLayout());
 		viewItemsPanel = new JPanel(new BorderLayout());
 		eastPanel = new JPanel(new GridLayout(0, 1));
-
-		// Placeholder colors
-		headPanel.setBackground(Color.GREEN);
-		eastPanel.setBackground(Color.WHITE);
 		
 		// DefaultListModel to hold elements from arraylist and display to JList
-		DefaultListModel<Product> productHolder = new DefaultListModel<>();
-		for (Product product : productList) {
+		DefaultListModel<Item> productHolder = new DefaultListModel<>();
+		for (Item product : productList) {
 			productHolder.addElement(product);
 		}
 
@@ -84,7 +80,6 @@ public class ShoppingBasket extends JFrame{
 		eastPanel.add(quantityAmount);
 
 		viewBasket = new JTextArea();
-		viewBasket.setBackground(Color.ORANGE);
 		// Add the westPanel to the purchase panel in the west position
 		purchasePanel.add(viewItemsPanel, BorderLayout.WEST);
 
@@ -147,13 +142,13 @@ public class ShoppingBasket extends JFrame{
 			}
 		});
 		
-		 homeBtn.addActionListener(new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	              //Code for return to home screen!!
-	            	
-	            }
-	        });
+		homeBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HomePage().setVisible(true);
+                dispose();
+            }
+        });
 	       
 	    }
 	
@@ -162,7 +157,7 @@ public class ShoppingBasket extends JFrame{
 	private void updateDisplayList() {
 		String itemType = (String) typeBox.getSelectedItem();
 		//Im creating a ListModel here to hold the products 
-		DefaultListModel<Product> productHolder = new DefaultListModel<>();
+		DefaultListModel<Item> productHolder = new DefaultListModel<>();
 
 		for (Item product : productList) {
 		    if (itemType.equals("All") || (product.getType() != null && itemType.equals(product.getType()))) {
@@ -177,7 +172,7 @@ public class ShoppingBasket extends JFrame{
 //Adds items to the basket arraylist
 	private void addToBasket() {
 	    // Get the selected item from the JList
-	    Product selectedProduct = displayList.getSelectedValue();
+	    Item selectedProduct = displayList.getSelectedValue();
 
 	    if (selectedProduct != null) {
 	        // Add the selected item to the basketList
@@ -202,7 +197,7 @@ public class ShoppingBasket extends JFrame{
 	private void displayDetails(ListSelectionEvent e) {
 		if (!e.getValueIsAdjusting()) {
 			// Update the selectedProductLabel based on the selected item
-			Product product = displayList.getSelectedValue();
+			Item product = displayList.getSelectedValue();
 			if (product != null) {
 				nameLabel.setText("Selected Product: " + product.getName());
 				priceLabel.setText("Item Price: " + product.getPrice());
@@ -226,7 +221,7 @@ public class ShoppingBasket extends JFrame{
 	}
 
 	private void totalCost() {
-	    Product product = displayList.getSelectedValue();
+	    Item product = displayList.getSelectedValue();
 
 	    if (product != null) {
 	        itemAmount = (int) quantityAmount.getValue();
@@ -242,7 +237,7 @@ public class ShoppingBasket extends JFrame{
 
 
 	//Checks what type item and returns the VAT to be included in total cost
-	private double getVAT(Product product) {
+	private double getVAT(Item product) {
 		String type = product.getType();
 		if(type.equals("Luxury")){
 			return 1.2;
@@ -274,7 +269,7 @@ public class ShoppingBasket extends JFrame{
 	    basketBuilder.append("\nTotal Cost: ").append(totalCost);
 	    basketBuilder.append("\nTotal Quantity: ").append(totalQuantity);
 
-	   
+	
 	    viewBasket.setText(basketBuilder.toString());
 	}
 

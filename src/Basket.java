@@ -1,20 +1,20 @@
 
 public class Basket {
 
-private Product product;
+private Item product;
 private int amount;
 private double totalCost;
 
-public Basket(Product product,int amount,double totalCost) {
+public Basket(Item product,int amount,double totalCost) {
 	this.product = product;
 	this.amount = amount;
 	this.totalCost = totalCost;
 }
 
-public Product getProduct() {
+public Item getProduct() {
 	return product;
 }
-public void setProduct(Product product) {
+public void setProduct(Item product) {
 	this.product = product;
 }
 public int getAmount() {
