@@ -9,28 +9,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class ShoppingBasket extends JPanel {
+public class ShoppingBasket extends JFrame{
 
-	private ArrayList<Product> productList;
+	private ArrayList<Item> productList;
 	private ArrayList<Basket> basketList;
 	private JPanel purchasePanel, headPanel, viewItemsPanel, eastPanel,itemsPanel;
 	private JComboBox<String> typeBox;
 	private JList<Product> displayList;
 	private JScrollPane productListScrollPane;
 	private JButton homeBtn, basketBtn;
-	private JLabel vatLabel, priceLabel, stockLabel, nameLabel, totalCostLabel;
+	private JLabel vatLabel, priceLabel, dateLabel, nameLabel, totalCostLabel;
 	private JSpinner quantityAmount;
 	private JTextArea viewBasket;
 	private int itemAmount;
-	 private JPanel cardPanel;
-	    private CardLayout cardLayout;
 
-	public ShoppingBasket(ArrayList<Product> productList, JPanel cardPanel, CardLayout cardLayout) {
+
+	public ShoppingBasket(ArrayList<Item> productList) {
+		 setTitle("Shopping Basket");
+	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	     setSize(700, 500);
+	     setLocationRelativeTo(null);
+		
 		// Initliazing my arraylists
 		this.productList = productList;
 		this.basketList = new ArrayList<Basket>();
-	     this.cardPanel = cardPanel;
-	        this.cardLayout = cardLayout;
+
 
 		// Layout for panel
 		setLayout(new BorderLayout());
@@ -69,14 +72,14 @@ public class ShoppingBasket extends JPanel {
 		basketBtn = new JButton("Basket");
 		vatLabel = new JLabel();
 		priceLabel = new JLabel();
-		stockLabel = new JLabel();
+		dateLabel = new JLabel();
 		totalCostLabel = new JLabel();
 		nameLabel = new JLabel();
 		eastPanel.add(basketBtn);
 		eastPanel.add(nameLabel);
 		eastPanel.add(vatLabel);
 		eastPanel.add(priceLabel);
-		eastPanel.add(stockLabel);
+		eastPanel.add(dateLabel);
 		eastPanel.add(totalCostLabel);
 		eastPanel.add(quantityAmount);
 
@@ -148,7 +151,7 @@ public class ShoppingBasket extends JPanel {
 	            @Override
 	            public void actionPerformed(ActionEvent e) {
 	              //Code for return to home screen!!
-	            	 showMainPanel();
+	            	
 	            }
 	        });
 	       
@@ -161,7 +164,7 @@ public class ShoppingBasket extends JPanel {
 		//Im creating a ListModel here to hold the products 
 		DefaultListModel<Product> productHolder = new DefaultListModel<>();
 
-		for (Product product : productList) {
+		for (Item product : productList) {
 		    if (itemType.equals("All") || (product.getType() != null && itemType.equals(product.getType()))) {
 		        productHolder.addElement(product);
 		    }
@@ -203,7 +206,7 @@ public class ShoppingBasket extends JPanel {
 			if (product != null) {
 				nameLabel.setText("Selected Product: " + product.getName());
 				priceLabel.setText("Item Price: " + product.getPrice());
-				stockLabel.setText("In stock: " + product.getQuantity());
+				dateLabel.setText("Expiry date: " + product.getExpirationDate());
 				
 				//Resetting spinner back to 1 when switching items
 				quantityAmount.setValue(1);
@@ -275,8 +278,15 @@ public class ShoppingBasket extends JPanel {
 	    viewBasket.setText(basketBuilder.toString());
 	}
 
-	 private void showMainPanel() {
-	        cardLayout.show(cardPanel, "mainPanel");
-	        setVisible(false);
+	public static void main(String[] args) {
+	    SwingUtilities.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {
+	            new ShoppingBasket(new ArrayList<>()).setVisible(true);
+	        }
+	    });
+	}
+
+
 	    }
-}
+
