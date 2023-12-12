@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ItemPacking extends JFrame {
 
@@ -111,6 +112,14 @@ public class ItemPacking extends JFrame {
 
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(homeButton);
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new HomePage().setVisible(true);
+                dispose();
+            }
+        });
+
 
         // Set layout and add components to the frame
         add(toolBar, BorderLayout.NORTH);
