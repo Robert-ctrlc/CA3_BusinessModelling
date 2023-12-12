@@ -76,7 +76,7 @@ public class ItemPacking extends JFrame {
         gbc.gridx = 1;
         gbc.gridy = 4;
         panel.add(widthTextField, gbc);
-
+//test
         // Depth Input
         JLabel depthLabel = new JLabel("Depth:");
         gbc.gridx = 0;
@@ -104,7 +104,7 @@ public class ItemPacking extends JFrame {
         gbc.gridy = 7;
         gbc.gridwidth = 2;
         panel.add(resultTextArea, gbc);
-
+        //TEST COMMIT
         // Home Button in the Top Right Corner
         JToolBar toolBar = new JToolBar();
         toolBar.setFloatable(false);
