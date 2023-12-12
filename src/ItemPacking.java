@@ -104,7 +104,7 @@ public class ItemPacking extends JFrame {
         gbc.gridy = 7;
         gbc.gridwidth = 2;
         panel.add(resultTextArea, gbc);
-
+        //TEST COMMIT
         // Home Button in the Top Right Corner
         JToolBar toolBar = new JToolBar();
         toolBar.setFloatable(false);
