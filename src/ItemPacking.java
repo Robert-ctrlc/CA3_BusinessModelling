@@ -112,6 +112,7 @@ public class ItemPacking extends JFrame {
 
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(homeButton);
+        
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
