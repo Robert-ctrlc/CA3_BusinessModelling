@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class CorrectChange extends JFrame {
     private JTextField totalValueField;
@@ -76,6 +77,12 @@ public class CorrectChange extends JFrame {
         JToolBar toolBar = new JToolBar();
         toolBar.setFloatable(false);
         JButton homeButton = new JButton("Home");
+        homeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openHomePage();
+            }
+        });
 
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(homeButton);
@@ -147,10 +154,17 @@ public class CorrectChange extends JFrame {
         changeField.setText("");
     }
 
+    private void openHomePage() {
+        new HomePage().setVisible(true);
+        dispose();
+    }
+
     // Main method to run the application
     public static void main(String[] args) {
-    	SwingUtilities.invokeLater(new Runnable() {
-    	    public void run() {
-    	        new CorrectChange();
-    	    }
-    	});}}
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new CorrectChange();
+            }
+        });
+    }
+}

@@ -18,8 +18,6 @@ public class HomePage extends JFrame {
         JButton exitButton = new JButton("Exit");
 
         setLayout(new BorderLayout());
-    
-        
 
         JPanel buttonPanel = new JPanel(new GridLayout(2, 2, 20, 20));
         buttonPanel.add(stockControlButton);
@@ -40,6 +38,54 @@ public class HomePage extends JFrame {
                 System.exit(0);
             }
         });
+
+        stockControlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openStockHome();
+            }
+        });
+
+        shoppingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openShoppingBasket();
+            }
+        });
+
+        changeCalculatorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openCorrectChange();
+            }
+        });
+
+        itemPackingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openItemPacking();
+            }
+        });
+    }
+
+    private void openStockHome() {
+        new StockHome().setVisible(true);
+        dispose();
+    }
+
+    private void openShoppingBasket() {
+        new ShoppingBasket(null).setVisible(true);
+        dispose();
+    }
+
+    private void openCorrectChange() {
+        new CorrectChange().setVisible(true);
+        dispose();
+    }
+
+    private void openItemPacking() {
+        new ItemPacking().setVisible(true);
+        dispose();
     }
 
     public static void main(String[] args) {
