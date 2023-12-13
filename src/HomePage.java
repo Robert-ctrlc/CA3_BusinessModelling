@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class HomePage extends JFrame {
 
@@ -42,7 +43,7 @@ public class HomePage extends JFrame {
         stockControlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openStockHome();
+                openLoginScreen();
             }
         });
 
@@ -68,8 +69,8 @@ public class HomePage extends JFrame {
         });
     }
 
-    private void openStockHome() {
-        new StockHome().setVisible(true);
+    private void openLoginScreen() {
+        new LoginScreen().setVisible(true);
         dispose();
     }
 
