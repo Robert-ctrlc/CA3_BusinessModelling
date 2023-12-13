@@ -128,7 +128,7 @@ public class StockHome extends JFrame {
 
     private void viewAllItems() {
         JFrame viewAllItemsFrame = new JFrame("View All Items");
-        viewAllItemsFrame.setSize(800, 500);
+        viewAllItemsFrame.setSize(700, 500);
         viewAllItemsFrame.setLocationRelativeTo(null);
 
         DefaultTableModel tableModel = new DefaultTableModel(new Object[]{"Name", "Type", "Expiry", "Price"}, 0);
