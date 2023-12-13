@@ -113,6 +113,7 @@ public class ItemPacking extends JFrame {
         toolBar.add(Box.createHorizontalGlue());
         toolBar.add(homeButton);
         
+        
         homeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,7 +125,7 @@ public class ItemPacking extends JFrame {
 
         // Set layout and add components to the frame
         add(toolBar, BorderLayout.NORTH);
-
+        setLocationRelativeTo(null);
         add(panel);
         setVisible(true);
     }
