@@ -74,7 +74,7 @@ public class HomePage extends JFrame {
     }
 
     private void openShoppingBasket() {
-        new ShoppingBasket(null).setVisible(true);
+        new ShoppingBasket().setVisible(true);
         dispose();
     }
 

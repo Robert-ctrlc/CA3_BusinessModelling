@@ -20,7 +20,7 @@ public class StockHome extends JFrame {
         setLocationRelativeTo(null);
 
         itemList = new ArrayList<>();
-
+        
         ImageIcon button1Icon = new ImageIcon("/Users/robert/Library/CloudStorage/OneDrive-TechnologicalUniversityDublin/BusinessComputingTU914/Year 3/Business Modelling/CA3_BusinessModelling/CA3_BusinessModelling/src/plus.png");
         ImageIcon button2Icon = new ImageIcon("/Users/robert/Library/CloudStorage/OneDrive-TechnologicalUniversityDublin/BusinessComputingTU914/Year 3/Business Modelling/CA3_BusinessModelling/CA3_BusinessModelling/src/searchImg.png");
 
@@ -103,6 +103,9 @@ public class StockHome extends JFrame {
 
                 Item newItem = new Item(name, type, expirationDate, price);
                 itemList.add(newItem);
+                //This calls the add method in our connector class to pass
+                //added items to shopping basket
+                listClass.addItem(newItem);
 
                 addItemFrame.dispose();
             }
@@ -202,6 +205,7 @@ public class StockHome extends JFrame {
             tableModel.addRow(new Object[]{item.getName(), item.getType(), item.getExpirationDate(), item.getPrice()});
         }
     }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {

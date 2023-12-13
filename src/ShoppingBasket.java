@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class ShoppingBasket extends JFrame{
 
-	private ArrayList<Item> productList;
+	private ArrayList<Item> productList = new ArrayList<Item>();
 	private ArrayList<Basket> basketList;
 	private JPanel purchasePanel, headPanel, viewItemsPanel, eastPanel,itemsPanel;
 	private JComboBox<String> typeBox;
@@ -24,16 +24,15 @@ public class ShoppingBasket extends JFrame{
 	private int itemAmount;
 
 
-	public ShoppingBasket(ArrayList<Item> productList) {
+	public ShoppingBasket() {
 		 setTitle("Shopping Basket");
 	     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     setSize(700, 500);
 	     setLocationRelativeTo(null);
 		
 		// Initliazing my arraylists
-		this.productList = productList;
 		this.basketList = new ArrayList<Basket>();
-
+		this.productList = listClass.getItemList();
 
 		// Layout for panel
 		setLayout(new BorderLayout());
@@ -149,7 +148,7 @@ public class ShoppingBasket extends JFrame{
                 dispose();
             }
         });
-	       
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    }
 	
 //Methods for handling page actions or state changes
@@ -188,8 +187,6 @@ public class ShoppingBasket extends JFrame{
 
 	        // Resetting spinner back to 1 when items added
 	        quantityAmount.setValue(1);
-	        System.out.println("Item added to basket: " + selectedProduct.getName());
-	        System.out.println(basketList.size());
 	    } 
 	}
 
@@ -219,7 +216,7 @@ public class ShoppingBasket extends JFrame{
 			}
 		}
 	}
-
+//Calculates the total cost to display to the user when selecting an item including VAT
 	private void totalCost() {
 	    Item product = displayList.getSelectedValue();
 
@@ -272,12 +269,13 @@ public class ShoppingBasket extends JFrame{
 	
 	    viewBasket.setText(basketBuilder.toString());
 	}
-
+	
+//Driver
 	public static void main(String[] args) {
 	    SwingUtilities.invokeLater(new Runnable() {
 	        @Override
 	        public void run() {
-	            new ShoppingBasket(new ArrayList<>()).setVisible(true);
+	            new ShoppingBasket().setVisible(true);
 	        }
 	    });
 	}
