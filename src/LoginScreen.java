@@ -35,7 +35,7 @@ public class LoginScreen extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
 
         // Adding components to the Login Panel
-        //Adding the 'tLabel' (Login) at column 0, row 0, spanning 2 columns, aligning it to the center
+        // Adding the 'tLabel' (Login) at column 0, row 0, spanning 2 columns, aligning it to the center
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
@@ -63,10 +63,9 @@ public class LoginScreen extends JFrame {
         // Adding the Password Text Field at column 1, row 2
         gbc.gridy = 2;
         lPanel.add(passField, gbc);
-        
+
         // ActionListener for the Login Button
         bLogin.addActionListener(new ActionListener() {
-           
             public void actionPerformed(ActionEvent e) {
                 String inputUser = userField.getText();
                 String inputPass = new String(passField.getPassword());
@@ -74,6 +73,9 @@ public class LoginScreen extends JFrame {
                 // Validating Login Credentials
                 if (validateLogin(inputUser, inputPass)) {
                     JOptionPane.showMessageDialog(LoginScreen.this, "Login successful, Welcome " + inputUser + "!");
+                    
+                    // Open StockHome page on successful login
+                    openStockHome();
                 } else {
                     JOptionPane.showMessageDialog(LoginScreen.this, "Invalid credentials, please try again.");
                 }
@@ -96,13 +98,19 @@ public class LoginScreen extends JFrame {
 
     // Method to validate Login Credentials
     private boolean validateLogin(String username, String password) {
-    	
-    	//Login successful if Password is "Root" or "root"
-    	return !username.isEmpty() && password.equals("Root") || password.equals("root");
+        // Login successful if Password is "Root" or "root"
+        return !username.isEmpty() && (password.equals("Root") || password.equals("root"));
+    }
+
+    // Method to open StockHome page
+    private void openStockHome() {
+        StockHome stockHome = new StockHome();
+        stockHome.setVisible(true);
+        dispose(); // Close the current login screen
     }
 
     // Main method to start the application
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LoginScreen()); //Initialize the login window on the Event Dispatch Thread (EDT) for proper Swing concurrency
+        SwingUtilities.invokeLater(() -> new LoginScreen()); // Initialize the login window on the Event Dispatch Thread (EDT) for proper Swing concurrency
     }
 }
