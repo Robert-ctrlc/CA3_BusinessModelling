@@ -182,9 +182,10 @@ public class StockHome extends JFrame {
     }
 
     private void removeExpiredItems() {
-        String currentDate = dateFormat.format(new java.util.Date());
-        itemList.removeIf(item -> isExpired(item.getExpirationDate(), currentDate));
-    }
+    String currentDate = dateFormat.format(new java.util.Date());
+    itemList.removeIf(item -> isExpired(item.getExpirationDate(), currentDate));
+    updateTable();
+}
 
     private boolean isExpired(String expirationDate, String currentDate) {
         try {
